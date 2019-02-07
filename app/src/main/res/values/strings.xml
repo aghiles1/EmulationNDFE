@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SmartCard</string>
+    <string name="servicedesc">description</string>
+    <string name="aiddescription">description</string>
 </resources>

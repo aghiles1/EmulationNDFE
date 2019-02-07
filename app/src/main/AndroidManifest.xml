@@ -22,7 +22,7 @@
         </activity>
 
         <service
-                android:name="fr.pid.watchhce.cCardService"
+                android:name="fr.unice.polytech.CardService"
                 android:permission="android.permission.BIND_NFC_SERVICE"
                 android:exported="true"
                 android:enabled="true">
