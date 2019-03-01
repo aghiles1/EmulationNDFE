@@ -28,12 +28,20 @@ class CardService : HostApduService() {
 
     private var selected = Selected.NONE
     private var ccFile = CCFile()
-    private var ndef = NDefFile()
+    private var ndef = NDefFile.getInstance()
+
+    override fun onCreate() {
+        super.onCreate()
+        Log.e("CardService","Created !")
+    }
 
     override fun onDeactivated(reason: Int) {}
 
     override fun processCommandApdu(commandApdu: ByteArray?, extras: Bundle?): ByteArray {
-        return commandApdu?.let { this.decode(it) } ?: byteArrayOf()
+        Log.e("CardService", "Command")
+        val rep = commandApdu?.let { this.decode(it) } ?: byteArrayOf()
+        Log.e("CardService", rep.joinToString("") { String.format("%02x", it) })
+        return rep
     }
 
     private fun decode(cmd: ByteArray): ByteArray {
@@ -116,7 +124,7 @@ class CardService : HostApduService() {
 
                 return when {
                     (offset + le) > fileBytes.size -> ErrorCode.INCORRECT_OFFSET_LE.code
-                    le > ByteBuffer.wrap(this.ccFile.mLe).int -> ErrorCode.INCORRECT_LE.code
+                    le > this.ccFile.mLe.toInt16() -> ErrorCode.INCORRECT_LE.code
                     else -> fileBytes.sliceArray(range) + ErrorCode.OK.code
                 }
 
@@ -130,7 +138,7 @@ class CardService : HostApduService() {
 
                 return when {
                     offset + le > fileBytes.size -> ErrorCode.INCORRECT_OFFSET_LE.code
-                    le > ByteBuffer.wrap(this.ccFile.mLe).int -> ErrorCode.INCORRECT_LC.code
+                    le > this.ccFile.mLe.toInt16() -> ErrorCode.INCORRECT_LC.code
                     else -> fileBytes.sliceArray(range) + ErrorCode.OK.code
                 }
 
@@ -151,15 +159,17 @@ class CardService : HostApduService() {
 
         val fileBytes = this.ndef.getContent()
 
-        return when {
-            this.selected != Selected.NDEF -> ErrorCode.INCORRECT_STATE.code
-            offset + le > fileBytes.size -> ErrorCode.INCORRECT_OFFSET_LC.code
-            le > ByteBuffer.wrap(this.ccFile.mLe).int -> ErrorCode.INCORRECT_LC.code
+         when {
+            this.selected != Selected.NDEF -> return ErrorCode.INCORRECT_STATE.code
+            offset + le > fileBytes.size ->return ErrorCode.INCORRECT_OFFSET_LC.code
+            le > this.ccFile.mLe.toInt16() -> return ErrorCode.INCORRECT_LC.code
             else -> {
                 val pre = fileBytes.sliceArray(IntRange(0, offset - 1))
                 val post = fileBytes.sliceArray(IntRange(offset + le, content.size - 1))
                 this.ndef.write(pre + data + post)
-                ErrorCode.OK.code
+
+                Log.e("CardService", "End Update")
+                return ErrorCode.OK.code
             }
         }
     }

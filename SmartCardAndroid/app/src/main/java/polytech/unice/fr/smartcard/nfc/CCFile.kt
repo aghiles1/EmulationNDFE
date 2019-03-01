@@ -17,3 +17,5 @@ class CCFile {
     }
 
 }
+
+fun ByteArray.toInt16() = (this[0].toInt() shl 8) + this[1].toInt()

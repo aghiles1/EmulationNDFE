@@ -2,42 +2,35 @@ package polytech.unice.fr.smartcard.nfc
 
 import android.util.Log
 import polytech.unice.fr.smartcard.SmartCardApp
-import java.io.File
-import java.io.RandomAccessFile
 
-class NDefFile {
+class NDefFile private constructor() {
 
-    private var file: File = File(SmartCardApp.instance!!.filesDir, "ndefFile")
+    companion object {
 
-    init {
-        this.init()
-    }
+        private var inst: NDefFile? = null
 
-    private fun init() {
-        if (!this.file.createNewFile()) {
-            Log.e("NDEFFILE", "File can't be created !")
-        } else {
-            Log.e("NDEFFILE", "File created !")
+        fun getInstance(): NDefFile {
+            return inst?.let { it } ?: NDefFile()
         }
+
     }
+
+    private val sharedPref = SmartCardApp.instance!!.getSharedPreferences("NDefFile", 0)
 
     fun getContent(): ByteArray {
-        return if (this.file.exists()) {
-            Log.e("NDefFile", "Get Content")
-            this.file.readBytes()
+        Log.e("NDefFile","Get Content")
+        return if (this.sharedPref.contains("data")) {
+            this.sharedPref.getString("data", "").toByteArray()
         } else {
             byteArrayOf()
         }
     }
 
     fun write(bytes: ByteArray) {
-        if (this.file.exists()) {
-            Log.e("NDefFile", "Write Content")
-            val raf = RandomAccessFile(this.file, "rw")
-            raf.setLength(0)
-            raf.close()
-            this.file.writeBytes(bytes)
-        }
-
+        Log.e("NDefFile","Write Content")
+        val edit = this.sharedPref.edit()
+        edit.putString("data", bytes.joinToString("") { String.format("%02x", it) })
+        edit.apply()
     }
+
 }
