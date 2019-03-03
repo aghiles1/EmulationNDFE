@@ -1,0 +1,7 @@
+C:\Users\aghiles\Desktop\DotNET\AskReaderLib\bin\Debug\Askcsc.dll
+C:\Users\aghiles\Desktop\DotNET\AskReaderLib\bin\Debug\AskReaderLib.dll
+C:\Users\aghiles\Desktop\DotNET\AskReaderLib\bin\Debug\AskReaderLib.pdb
+C:\Users\aghiles\Desktop\DotNET\AskReaderLib\obj\Debug\AskReaderLib.csprojAssemblyReference.cache
+C:\Users\aghiles\Desktop\DotNET\AskReaderLib\obj\Debug\AskReaderLib.csproj.CoreCompileInputs.cache
+C:\Users\aghiles\Desktop\DotNET\AskReaderLib\obj\Debug\AskReaderLib.dll
+C:\Users\aghiles\Desktop\DotNET\AskReaderLib\obj\Debug\AskReaderLib.pdb

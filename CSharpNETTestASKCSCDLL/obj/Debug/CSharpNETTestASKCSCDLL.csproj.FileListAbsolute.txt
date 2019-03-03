@@ -1,0 +1,10 @@
+C:\Users\aghiles\Desktop\DotNET\CSharpNETTestASKCSCDLL\obj\Debug\CSharpNETTestASKCSCDLL.csprojAssemblyReference.cache
+C:\Users\aghiles\Desktop\DotNET\CSharpNETTestASKCSCDLL\obj\Debug\CSharpNETTestASKCSCDLL.Form1.resources
+C:\Users\aghiles\Desktop\DotNET\CSharpNETTestASKCSCDLL\obj\Debug\CSharpNETTestASKCSCDLL.Properties.Resources.resources
+C:\Users\aghiles\Desktop\DotNET\CSharpNETTestASKCSCDLL\obj\Debug\CSharpNETTestASKCSCDLL.csproj.GenerateResource.cache
+C:\Users\aghiles\Desktop\DotNET\CSharpNETTestASKCSCDLL\obj\Debug\CSharpNETTestASKCSCDLL.csproj.CoreCompileInputs.cache
+C:\Users\aghiles\Desktop\DotNET\AskREaderLib\bin\Debug\CSharpNETTestASKCSCDLL.exe
+C:\Users\aghiles\Desktop\DotNET\AskREaderLib\bin\Debug\CSharpNETTestASKCSCDLL.pdb
+C:\Users\aghiles\Desktop\DotNET\CSharpNETTestASKCSCDLL\obj\Debug\CSharpNETTestASKCSCDLL.csproj.CopyComplete
+C:\Users\aghiles\Desktop\DotNET\CSharpNETTestASKCSCDLL\obj\Debug\CSharpNETTestASKCSCDLL.exe
+C:\Users\aghiles\Desktop\DotNET\CSharpNETTestASKCSCDLL\obj\Debug\CSharpNETTestASKCSCDLL.pdb
